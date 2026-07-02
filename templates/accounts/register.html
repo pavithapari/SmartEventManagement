@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <div class="form-card">
+
+        <h2>Create Your Account</h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ user_form.as_p }}
+
+            {{ profile_form.as_p }}
+
+            <button type="submit" class="btn btn-primary">
+                Register
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

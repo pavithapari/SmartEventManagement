@@ -7,6 +7,10 @@ venv/
 env/
 .venv/
 
+event_portal/events/migrations
+event_portal/accounts/migrations
+event_portal/registrations/migrations
+
 # Database
 db.sqlite3
 
