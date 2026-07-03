@@ -48,7 +48,23 @@
 
     <hr>
 
-    {% include "components/messages.html" %}
+    {% if messages %}
+
+<div class="message-container">
+
+    {% for message in messages %}
+
+        <div class="message {{ message.tags }}">
+
+            {{ message }}
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
 
     {% block content %}
 

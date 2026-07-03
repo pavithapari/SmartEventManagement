@@ -33,7 +33,8 @@ class Registration(models.Model):
     id_card_number = models.CharField(
         max_length=30,
         unique=True,
-        blank=True
+        blank=True,
+        null=True,
     )
 
     class Meta:
