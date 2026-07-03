@@ -69,15 +69,14 @@
 
 {% if not user.is_authenticated %}
 
-    <a href="{% url 'login' %}" class="btn btn-primary">
-        Login to Register
+    <a href="{% url 'login' %}">
+        <button class="btn btn-primary">Login to Register</button>
     </a>
 
 {% elif already_registered %}
-
-    <button class="btn btn-success" disabled>
-        ✓ Already Registered
-    </button>
+<button class="btn btn-danger" onclick="openModal()">
+    Cancel Registration
+</button>
 
 {% elif event.status != "OPEN" %}
 
@@ -93,8 +92,8 @@
 
 {% else %}
 
-    <a href="{% url 'register_event' event.id %}" class="btn btn-primary">
-        Register Now
+    <a href="{% url 'register_event' event.id %}">
+        <button class="btn btn-primary">Register Now</button>
     </a>
 
 {% endif %}
@@ -104,5 +103,64 @@
     </div>
 
 </div>
+
+
+<div id="cancelModal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>Cancel Registration</h2>
+
+        <p>
+            Are you sure you want to cancel your registration for
+            <strong>{{ event.title }}</strong>?
+        </p>
+
+        <div class="modal-buttons">
+
+            <form method="POST"
+                  action="{% url 'cancel_registration' event.id %}">
+
+                {% csrf_token %}
+
+                <button type="submit" class="btn btn-danger">
+                    Yes, Cancel
+                </button>
+
+            </form>
+
+            <button class="btn btn-secondary" onclick="closeModal()">
+                No
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function openModal(){
+
+    document.getElementById("cancelModal").style.display = "flex";
+}
+
+function closeModal(){
+
+    document.getElementById("cancelModal").style.display = "none";
+}
+
+window.onclick = function(event){
+
+    const modal = document.getElementById("cancelModal");
+
+    if(event.target === modal){
+
+        closeModal();
+    }
+}
+
+</script>
 
 {% endblock %}

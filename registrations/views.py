@@ -62,14 +62,55 @@ def register_event(request, event_id):
 
         return redirect("event_detail", id=event.id)
 
-    Registration.objects.create(
+    registration = Registration.objects.filter(
+    user=request.user,
+    event=event
+    ).first()
+
+    if registration:
+
+        registration.status = "REGISTERED"
+        registration.save()
+        messages.success(
+            request,
+            "You are again registered for this Event Successfully"
+        )
+
+    else:
+
+        Registration.objects.create(
+            user=request.user,
+            event=event
+        )
+
+        messages.success(
+            request,
+            "Successfully registered!"
+        )
+
+    return redirect("event_detail", id=event.id)
+
+@login_required
+def cancel_registration(request, event_id):
+
+    if request.method != "POST":
+        return redirect("event_detail", id=event_id)
+
+    event = get_object_or_404(Event, id=event_id)
+
+    registration = get_object_or_404(
+        Registration,
         user=request.user,
-        event=event
+        event=event,
+        status="REGISTERED"
     )
+
+    registration.status = "CANCELLED"
+    registration.save()
 
     messages.success(
         request,
-        "Successfully registered!"
+        "Your registration has been cancelled successfully."
     )
 
     return redirect("event_detail", id=event.id)
