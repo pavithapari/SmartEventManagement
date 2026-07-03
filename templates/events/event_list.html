@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="events-container">
+
+    <h1 class="page-title">Upcoming Events</h1>
+
+    <div class="events-grid">
+
+        {% for event in events %}
+
+        <div class="event-card">
+
+            {% if event.banner %}
+                <img src="{{ event.banner.url }}" class="event-banner">
+            {% endif %}
+
+            <div class="event-content">
+
+                <h3>{{ event.title }}</h3>
+
+                <p class="event-info">
+                    📅 {{ event.event_date }}
+                </p>
+
+                <p class="event-info">
+                    🕒 {{ event.event_time }}
+                </p>
+
+                <p class="event-info">
+                    📍 {{ event.venue }}
+                </p>
+
+                <p class="event-info">
+                    👥 Capacity : {{ event.capacity }}
+                </p>
+
+                <p class="event-info">
+                    🏷 {{ event.category }}
+                </p>
+
+                <div class="event-footer">
+
+                    <a href="#" class="btn btn-primary">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <h2>No events available.</h2>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <div class="form-card">
+
+        <h2>Create Event</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {% for field in form %}
+                {% include "components/form_field.html" %}
+            {% endfor %}
+
+            <button class="btn btn-primary">
+                Create Event
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
