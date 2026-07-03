@@ -10,16 +10,45 @@
 
 <body>
 
-    <nav>
-        <h2>Smart Event Management Portal</h2>
-        <div class="nav-left">
+<nav>
+
+    <h2>
+        Smart Event Management Portal
+    </h2>
+
+    <div class="nav-left">
+
         <a href="/">Home</a>
-        <a href="/register/">Register</a>
-        <a href="/login/">Login</a>
-        </div>
-    </nav>
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'dashboard' %}">
+                Dashboard
+            </a>
+
+            <a href="{% url 'logout' %}">
+                Logout
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'register' %}">
+                Register
+            </a>
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
 
     <hr>
+
+    {% include "components/messages.html" %}
 
     {% block content %}
 

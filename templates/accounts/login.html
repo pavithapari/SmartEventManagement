@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <div class="form-card">
+
+        <h2>Login</h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {% include "components/form_field.html" with field=form.username %}
+
+            {% include "components/form_field.html" with field=form.password %}
+
+            <button class="btn btn-primary">
+                Login
+            </button>
+
+        </form>
+
+        <br>
+
+        <p style="text-align:center;">
+            Don't have an account?
+            <a href="{% url 'register' %}">
+                Register
+            </a>
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

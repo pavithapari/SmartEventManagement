@@ -1,146 +1,160 @@
 /* =========================
-   Global Styles
-========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body{
-    background:#f4f6fb;
-    color:#333;
-}
-
-/* =========================
-   Navbar
-========================= */
-
-nav{
-    background:#1E3A8A;
-    color:white;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:16px 50px;
-}
-
-.nav-left{
-    display: flex;
-    flex-direction: row;
-    gap:30px
-    
-}
-
-nav h2{
-    font-size:26px;
-}
-
-nav ul{
-    list-style:none;
-    display:flex;
-    gap:25px;
-
-}
-
-nav a{
-    text-decoration:none;
-    color:white;
-    font-weight:500;
-    transition:.3s;
-    justify-content: space-between;
-}
-
-nav a:hover{
-    color:#FFD166;
-}
-
-/* =========================
    Common Form Layout
 ========================= */
+.form-card *{
+    box-sizing:border-box;
+}
+
 
 .form-container{
-
     min-height:90vh;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
     padding:40px;
 }
 
+
+
 .form-card{
-
+    
     width:520px;
-
-    background:white;
-
+    background:#fff;
     border-radius:12px;
-
     padding:35px;
-
     box-shadow:0 10px 30px rgba(0,0,0,.12);
 }
 
+
 .form-card h2{
-
     text-align:center;
-
     color:#1E3A8A;
-
-    margin-bottom:25px;
+    margin-bottom:30px;
 }
 
 /* =========================
-   Form Elements
+   Form Components
 ========================= */
 
-.form-card p{
+.form-group{
     margin-bottom:18px;
 }
 
-.form-card label{
-
+.form-group label{
     display:block;
-
-    margin-bottom:6px;
-
+    margin-bottom:8px;
     font-weight:600;
+    color:#333;
 }
 
-.form-card input,
-.form-card select,
-.form-card textarea{
+/* Common input style */
+
+.form-control{
 
     width:100%;
 
-    padding:11px;
+    padding:12px 14px;
 
     border:1px solid #d0d0d0;
 
-    border-radius:6px;
+    border-radius:8px;
 
     font-size:15px;
 
-    transition:.3s;
+    background:#fff;
+
+    transition:all .3s ease;
 }
 
-.form-card textarea{
-    resize:vertical;
-}
+/* Focus */
 
-.form-card input:focus,
-.form-card select:focus,
-.form-card textarea:focus{
+.form-control:focus{
 
     outline:none;
 
     border-color:#1E3A8A;
 
-    box-shadow:0 0 5px rgba(30,58,138,.3);
+    box-shadow:0 0 0 4px rgba(30,58,138,.12);
+}
+
+/* Placeholder */
+
+.form-control::placeholder{
+
+    color:#999;
+}
+
+/* Textarea */
+
+textarea.form-control{
+
+    resize:vertical;
+
+    min-height:120px;
+}
+
+/* Select */
+
+select.form-control{
+
+    cursor:pointer;
+}
+
+/* Checkbox */
+
+input[type="checkbox"]{
+
+    width:auto;
+
+    margin-right:8px;
+}
+
+/* Help text */
+
+.help-text{
+
+    display:block;
+
+    margin-top:5px;
+
+    color:#777;
+
+    font-size:13px;
+}
+
+/* Error Messages */
+
+.field-error{
+
+    color:#d93025;
+
+    margin-top:5px;
+
+    font-size:14px;
+}
+
+.errorlist{
+
+    list-style:none;
+
+    margin-top:5px;
+
+    padding:0;
+
+    color:#d93025;
+
+    font-size:14px;
+}
+
+/* Non-field errors */
+
+.non-field-errors{
+
+    margin-bottom:18px;
+
+    color:#d93025;
+
+    font-weight:600;
 }
 
 /* =========================
@@ -149,23 +163,17 @@ nav a:hover{
 
 .btn{
 
-    display:inline-block;
-
     width:100%;
-
-    padding:12px;
 
     border:none;
 
-    border-radius:6px;
+    border-radius:8px;
 
     cursor:pointer;
 
     font-size:16px;
 
-    text-align:center;
-
-    text-decoration:none;
+    font-weight:600;
 
     transition:.3s;
 }
@@ -182,18 +190,6 @@ nav a:hover{
     background:#173178;
 }
 
-.btn-danger{
-
-    background:#DC3545;
-
-    color:white;
-}
-
-.btn-danger:hover{
-
-    background:#b52a38;
-}
-
 .btn-success{
 
     background:#198754;
@@ -206,136 +202,39 @@ nav a:hover{
     background:#157347;
 }
 
-/* =========================
-   Page Titles
-========================= */
+.btn-danger{
 
-.page-title{
-
-    text-align:center;
-
-    color:#1E3A8A;
-
-    margin-bottom:25px;
-}
-
-/* =========================
-   Tables
-========================= */
-
-.table-container{
-
-    width:90%;
-
-    margin:40px auto;
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:10px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,.1);
-}
-
-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-}
-
-table th{
-
-    background:#1E3A8A;
+    background:#DC3545;
 
     color:white;
-
-    padding:12px;
 }
 
-table td{
+.btn-danger:hover{
 
-    padding:12px;
-
-    border-bottom:1px solid #ddd;
+    background:#b52a38;
 }
 
-table tr:hover{
-
-    background:#f6f6f6;
-}
-
-/* =========================
-   Dashboard Cards
-========================= */
-
-.card-container{
+.message{
 
     width:90%;
 
-    margin:40px auto;
+    margin:20px auto;
 
-    display:grid;
+    padding:15px;
 
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    border-radius:8px;
 
-    gap:20px;
-}
-
-.card{
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:10px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,.1);
-
-    text-align:center;
-}
-
-.card h3{
-
-    color:#1E3A8A;
-
-    margin-bottom:10px;
-}
-
-.card p{
-
-    font-size:28px;
+    color:white;
 
     font-weight:bold;
 }
 
-/* =========================
-   Status Badges
-========================= */
-
-.badge{
-
-    padding:5px 12px;
-
-    border-radius:20px;
-
-    color:white;
-
-    font-size:14px;
-}
-
-.badge-open{
+.success{
 
     background:#198754;
 }
 
-.badge-closed{
+.error{
 
-    background:#DC3545;
-}
-
-.badge-completed{
-
-    background:#6C757D;
+    background:#dc3545;
 }
