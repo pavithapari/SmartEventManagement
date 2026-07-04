@@ -15,7 +15,7 @@ event_portal/registrations/migrations
 db.sqlite3
 
 # Media uploads
-media/
+event_banners/
 
 # Static files collected for production
 staticfiles/

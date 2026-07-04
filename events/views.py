@@ -82,3 +82,56 @@ def event_detail(request, id):
     }
 
     return render(request, "events/event_detail.html", context)
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib import messages
+
+from .models import Event
+from .forms import EventForm
+
+
+@login_required
+def edit_event(request, id):
+
+    event = get_object_or_404(Event, id=id)
+
+    # Only the organizer can edit
+    if event.organizer != request.user:
+        messages.error(
+            request,
+            "You are not allowed to edit this event."
+        )
+        return redirect("event_detail", id=event.id)
+
+    if request.method == "POST":
+
+        form = EventForm(
+            request.POST,
+            request.FILES,
+            instance=event
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            messages.success(
+                request,
+                "Event updated successfully."
+            )
+
+            return redirect("event_detail", id=event.id)
+
+    else:
+
+        form = EventForm(instance=event)
+
+    return render(
+        request,
+        "events/edit_event.html",
+        {
+            "form": form,
+            "event": event,
+        }
+    )
