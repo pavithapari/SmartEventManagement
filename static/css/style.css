@@ -10,7 +10,7 @@
     --accent:#F59E0B;
     --success:#16A34A;
     --danger:#DC2626;
-    --warning:#F59E0B;
+    --warning:#c58413;
 
     --bg:#F4F5F7;
     --surface:#FFFFFF;
@@ -387,7 +387,12 @@ button:disabled{
 }
 
 .warning{
-    background:var(--warning);
+    background-color:var(--warning);
+    color:#1F2333;
+}
+
+.edit{
+    background-color: var(--accent);
     color:#1F2333;
 }
 
