@@ -2,24 +2,170 @@
 
 {% block content %}
 
-<div class="form-container">
+<h1 class="page-title">
 
-    <div class="form-card">
+    Welcome {{ request.user.first_name }}
 
-        <h2>Dashboard</h2>
+</h1>
 
-        <h3>
-            Welcome {{ request.user.first_name }}
-        </h3>
+<div class="card-container">
 
-        <br>
+    <div class="card">
 
-        <p>
-            Authentication is working successfully.
-        </p>
+        <h3>Registered Events</h3>
+
+        <p>{{ registered_count }}</p>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Upcoming Events</h3>
+
+        <p>{{ upcoming_count }}</p>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Past Events</h3>
+
+        <p>{{ past_count }}</p>
 
     </div>
 
 </div>
+
+<!-- Quick Actions -->
+
+<section class="features">
+
+<h2 class="section-title">
+
+Quick Actions
+
+</h2>
+
+<div class="feature-grid">
+
+<a href="{% url 'event_list' %}" class="btn btn-primary">
+
+Browse Events
+
+</a>
+
+<a href="{% url 'profile' %}" class="btn btn-success">
+
+My Profile
+
+</a>
+
+<a href="{% url 'create_event' %}" class="btn btn-secondary">
+
+Create Event
+
+</a>
+
+</div>
+
+</section>
+
+<!-- My Upcoming Events -->
+
+<section class="upcoming">
+
+<h2 class="section-title">
+
+My Upcoming Events
+
+</h2>
+
+<div class="event-grid">
+
+{% for registration in my_upcoming_events %}
+
+<div class="event-card">
+
+<h3>{{ registration.event.title }}</h3>
+
+<p>
+
+📅 {{ registration.event.date }}
+
+</p>
+
+<p>
+
+📍 {{ registration.event.location }}
+
+</p>
+
+<a href="{% url 'event_detail' registration.event.id %}" class="btn btn-primary">
+
+View Event
+
+</a>
+
+</div>
+
+{% empty %}
+
+<p>
+
+You haven't registered for any upcoming events.
+
+</p>
+
+{% endfor %}
+
+</div>
+
+</section>
+
+<!-- Past Events -->
+
+<section class="upcoming">
+
+<h2 class="section-title">
+
+Past Events
+
+</h2>
+
+<div class="event-grid">
+
+{% for registration in my_past_events %}
+
+<div class="event-card">
+
+<h3>{{ registration.event.title }}</h3>
+
+<p>
+
+📅 {{ registration.event.date }}
+
+</p>
+
+<p>
+
+📍 {{ registration.event.location }}
+
+</p>
+
+</div>
+
+{% empty %}
+
+<p>
+
+No past events.
+
+</p>
+
+{% endfor %}
+
+</div>
+
+</section>
 
 {% endblock %}

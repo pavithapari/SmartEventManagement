@@ -523,3 +523,203 @@ button:disabled{
 
     margin-top:25px;
 }
+/* ==========================================
+                HERO
+========================================== */
+
+.hero{
+
+    background:linear-gradient(135deg,#1E3A8A,#3B82F6);
+
+    color:white;
+
+    padding:100px 20px;
+
+    text-align:center;
+}
+
+.hero h1{
+
+    font-size:52px;
+
+    margin-bottom:20px;
+}
+
+.hero p{
+
+    font-size:20px;
+
+    max-width:700px;
+
+    margin:auto;
+
+    margin-bottom:35px;
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+}
+
+.btn-secondary{
+
+    background:#FFD166;
+
+    color:#222;
+}
+
+.btn-secondary:hover{
+
+    background:#ffc233;
+}
+
+
+/* ==========================================
+                FEATURES
+========================================== */
+
+.features{
+
+    padding:70px 10%;
+}
+
+.section-title{
+
+    text-align:center;
+
+    color:#1E3A8A;
+
+    margin-bottom:40px;
+
+    font-size:34px;
+}
+
+.feature-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:30px;
+}
+
+.feature-card{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+
+    text-align:center;
+
+    transition:.3s;
+}
+
+.feature-card:hover{
+
+    transform:translateY(-8px);
+}
+
+.icon{
+
+    font-size:50px;
+
+    margin-bottom:15px;
+}
+
+
+/* ==========================================
+                EVENTS
+========================================== */
+
+.upcoming{
+
+    padding:70px 10%;
+}
+
+.event-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+}
+
+.event-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.event-card:hover{
+
+    transform:translateY(-6px);
+}
+footer{
+
+    background:#1E3A8A;
+
+    color:white;
+
+    text-align:center;
+
+    padding:20px;
+
+    margin-top:80px;
+}
+.event-banner{
+
+    width:100%;
+
+    height:200px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    margin-bottom:15px;
+}
+
+.no-events{
+
+    grid-column:1/-1;
+
+    text-align:center;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.no-events h3{
+
+    color:#1E3A8A;
+
+    margin-bottom:15px;
+}
+
+.no-events p{
+
+    margin-bottom:20px;
+}

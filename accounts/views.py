@@ -4,7 +4,12 @@ from .forms import LoginForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-
+from events.models import Event
+from django.utils import timezone
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from registrations.models import Registration
 def register(request):
 
     if request.method == "POST":
@@ -85,10 +90,64 @@ def logout_view(request):
     messages.success(request, "Logged out successfully.")
 
     return redirect("login")
+
+
+
 @login_required
 def dashboard(request):
 
+    registrations = Registration.objects.filter(
+        user=request.user,
+        status="REGISTERED"
+    )
+
+    registered_count = registrations.count()
+
+    upcoming_events = registrations.filter(
+        event__event_date__gte=timezone.now().date()
+    )
+
+    past_events = registrations.filter(
+        event__event_date__lt=timezone.now().date()
+    )
+
+    context = {
+
+        "registered_count": registered_count,
+
+        "upcoming_count": upcoming_events.count(),
+
+        "past_count": past_events.count(),
+
+        "my_upcoming_events": upcoming_events,
+
+        "my_past_events": past_events,
+
+    }
+
     return render(
         request,
-        "dashboard/dashboard.html"
+        "dashboard/dashboard.html",
+        context,
     )
+from events.models import Event
+from django.utils import timezone
+
+def home(request):
+
+    upcoming_events = Event.objects.filter(
+        event_date__gte=timezone.now().date()
+    ).order_by("event_date")[:6]
+
+    context = {
+        "upcoming_events": upcoming_events,
+    }
+
+    return render(
+        request,
+        "home/home.html",
+        context
+    )
+@login_required
+def profile(request):
+    return render(request, "accounts/profile.html")

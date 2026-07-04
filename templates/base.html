@@ -19,6 +19,7 @@
     <div class="nav-left">
 
         <a href="/">Home</a>
+        
 
         {% if user.is_authenticated %}
 
@@ -69,6 +70,6 @@
     {% block content %}
 
     {% endblock %}
-
+{% include "components/footer.html" %}
 </body>
 </html>
