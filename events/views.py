@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Event
 from registrations.models import Registration
 from .models import Event
+from django.db.models import Q 
 
 @login_required
 def create_event(request):
@@ -36,10 +37,21 @@ def create_event(request):
 
 def event_list(request):
     events = Event.objects.all().order_by("event_date")
-
+    search=request.GET.get("search")
+    category=request.GET.get("category")
+    if search:
+        events=events.filter(
+            Q(title__icontains=search) |
+            Q(description__icontains=search) |
+            Q(venue__icontains=search)
+        )
+    if category:
+        events=events.filter(category=category)
     context = {
-        "events": events
-    }
+        "events": events,
+        "search":search,
+            "category":category,
+        "categories":Event.CATEGORY_CHOICES,    }
 
     return render(request, "events/event_list.html", context)
 
