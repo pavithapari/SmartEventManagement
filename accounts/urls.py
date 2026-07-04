@@ -17,4 +17,9 @@ urlpatterns = [
     views.organizer_dashboard,
     name="organizer_dashboard",
 ),
+path(
+    "edit-profile/",
+    views.edit_profile,
+    name="edit_profile",
+),
 ]

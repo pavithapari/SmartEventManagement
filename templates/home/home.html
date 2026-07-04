@@ -16,14 +16,15 @@
 
         <div class="hero-buttons">
 
-            <a href="{% url 'event_list' %}" class="btn btn-primary">
-                Explore Events
+            <a href="{% url 'event_list' %}" >
+                <button class="btn btn-success">Explore Events</button>
+                
             </a>
 
             {% if user.is_authenticated %}
 
-                <a href="{% url 'create_event' %}" class="btn btn-secondary">
-                    Create Event
+                <a href="{% url 'create_event' %}">
+                    <button class="btn btn-secondary">Create Events</button>
                 </a>
 
             {% else %}
@@ -149,11 +150,10 @@
 
             </p>
 
-            <a href="{% url 'event_detail' event.id %}"
+            <a href="{% url 'event_detail' event.id %}">
+                <button class="btn btn-primary"> View Details</button>
 
-               class="btn btn-primary">
-
-                View Details
+               
 
             </a>
 

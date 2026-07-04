@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <div class="form-card">
+
+        <h2>Edit Profile</h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <h3>User Information</h3>
+
+            {% for field in user_form %}
+
+                {% include "components/form_field.html" %}
+
+            {% endfor %}
+
+            <h3 style="margin-top:25px;">
+                Profile Information
+            </h3>
+
+            {% for field in profile_form %}
+
+                {% include "components/form_field.html" %}
+
+            {% endfor %}
+
+            <button
+                type="submit"
+                class="btn btn-primary">
+
+                Save Changes
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

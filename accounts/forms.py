@@ -118,3 +118,43 @@ class LoginForm(forms.Form):
             }
         )
     )
+
+
+
+
+class UserUpdateForm(forms.ModelForm):
+
+    class Meta:
+
+        model = User
+
+        fields = [
+            "first_name",
+            "last_name",
+            "email",
+        ]
+
+        widgets = {
+            "first_name": forms.TextInput(attrs={"class": "form-control"}),
+            "last_name": forms.TextInput(attrs={"class": "form-control"}),
+            "email": forms.EmailInput(attrs={"class": "form-control"}),
+        }
+
+
+class ProfileUpdateForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Profile
+
+        fields = [
+            "phone_number",
+            "department",
+            "year",
+        ]
+
+        widgets = {
+            "phone_number": forms.TextInput(attrs={"class": "form-control"}),
+            "department": forms.Select(attrs={"class": "form-control"}),
+            "year": forms.Select(attrs={"class": "form-control"}),
+        }

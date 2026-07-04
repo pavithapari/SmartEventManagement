@@ -10,6 +10,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from registrations.models import Registration
+from .forms import UserUpdateForm, ProfileUpdateForm
 
 from django.db.models import Count
 def register(request):
@@ -132,8 +133,6 @@ def dashboard(request):
         "dashboard/dashboard.html",
         context,
     )
-from events.models import Event
-from django.utils import timezone
 
 def home(request):
 
@@ -183,4 +182,60 @@ def organizer_dashboard(request):
         request,
         "dashboard/organizer_dashboard.html",
         context,
+    )
+
+
+
+
+@login_required
+def edit_profile(request):
+
+    profile = request.user.profile
+
+    if request.method == "POST":
+
+        user_form = UserUpdateForm(
+            request.POST,
+            instance=request.user
+        )
+
+        profile_form = ProfileUpdateForm(
+            request.POST,
+            instance=profile
+        )
+
+        if user_form.is_valid() and profile_form.is_valid():
+
+            user_form.save()
+            profile_form.save()
+
+            messages.success(
+                request,
+                "Profile updated successfully."
+            )
+
+            return redirect("profile")
+
+    else:
+
+        user_form = UserUpdateForm(
+            instance=request.user
+        )
+
+        profile_form = ProfileUpdateForm(
+            instance=profile
+        )
+
+    context = {
+
+        "user_form": user_form,
+
+        "profile_form": profile_form,
+
+    }
+
+    return render(
+        request,
+        "accounts/edit_profile.html",
+        context
     )

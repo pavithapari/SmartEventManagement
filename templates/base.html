@@ -19,7 +19,7 @@
     <div class="nav-left">
 
         <a href="/">Home</a>
-        
+
 
         {% if user.is_authenticated %}
 
@@ -46,10 +46,7 @@
     </div>
 
 </nav>
-
-    <hr>
-
-    {% if messages %}
+{% if messages %}
 
 <div class="message-container">
 
@@ -67,9 +64,11 @@
 
 {% endif %}
 
-    {% block content %}
+    <main class="page-container">
+        {% block content %}
 
-    {% endblock %}
+        {% endblock %}
+    </main>
 {% include "components/footer.html" %}
 </body>
 </html>

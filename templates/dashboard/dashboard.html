@@ -3,35 +3,24 @@
 {% block content %}
 
 <h1 class="page-title">
-
     Welcome {{ request.user.first_name }}
-
 </h1>
 
-<div class="card-container">
+<div class="stats">
 
-    <div class="card">
-
+    <div class="stat-card">
         <h3>Registered Events</h3>
-
-        <p>{{ registered_count }}</p>
-
+        <h2>{{ registered_count }}</h2>
     </div>
 
-    <div class="card">
-
+    <div class="stat-card">
         <h3>Upcoming Events</h3>
-
-        <p>{{ upcoming_count }}</p>
-
+        <h2>{{ upcoming_count }}</h2>
     </div>
 
-    <div class="card">
-
+    <div class="stat-card">
         <h3>Past Events</h3>
-
-        <p>{{ past_count }}</p>
-
+        <h2>{{ past_count }}</h2>
     </div>
 
 </div>
@@ -41,29 +30,21 @@
 <section class="features">
 
 <h2 class="section-title">
-
-Quick Actions
-
+    Quick Actions
 </h2>
 
 <div class="feature-grid">
 
 <a href="{% url 'event_list' %}" class="btn btn-primary">
-
-Browse Events
-
+    Browse Events
 </a>
 
 <a href="{% url 'profile' %}" class="btn btn-success">
-
-My Profile
-
+    My Profile
 </a>
 
 <a href="{% url 'create_event' %}" class="btn btn-secondary">
-
-Create Event
-
+    Create Event
 </a>
 
 <a href="{% url 'organizer_dashboard' %}" class="btn btn-danger">
@@ -79,9 +60,7 @@ Create Event
 <section class="upcoming">
 
 <h2 class="section-title">
-
-My Upcoming Events
-
+    My Upcoming Events
 </h2>
 
 <div class="event-grid">
@@ -92,33 +71,23 @@ My Upcoming Events
 
 <h3>{{ registration.event.title }}</h3>
 
-<p>
+<p>📅 {{ registration.event.date }}</p>
 
-📅 {{ registration.event.date }}
-
-</p>
-
-<p>
-
-📍 {{ registration.event.location }}
-
-</p>
+<p>📍 {{ registration.event.location }}</p>
 
 <a href="{% url 'event_detail' registration.event.id %}" class="btn btn-primary">
-
-View Event
-
+    View Event
 </a>
 
 </div>
 
 {% empty %}
 
-<p>
-
-You haven't registered for any upcoming events.
-
-</p>
+<div class="no-events">
+    <h3>No upcoming events</h3>
+    <p>You haven't registered for any upcoming events.</p>
+    <a href="{% url 'event_list' %}" class="btn btn-secondary">Browse Events</a>
+</div>
 
 {% endfor %}
 
@@ -131,9 +100,7 @@ You haven't registered for any upcoming events.
 <section class="upcoming">
 
 <h2 class="section-title">
-
-Past Events
-
+    Past Events
 </h2>
 
 <div class="event-grid">
@@ -144,27 +111,18 @@ Past Events
 
 <h3>{{ registration.event.title }}</h3>
 
-<p>
+<p>📅 {{ registration.event.date }}</p>
 
-📅 {{ registration.event.date }}
-
-</p>
-
-<p>
-
-📍 {{ registration.event.location }}
-
-</p>
+<p>📍 {{ registration.event.location }}</p>
 
 </div>
 
 {% empty %}
 
-<p>
-
-No past events.
-
-</p>
+<div class="no-events">
+    <h3>No past events</h3>
+    <p>Your event history will show up here.</p>
+</div>
 
 {% endfor %}
 
