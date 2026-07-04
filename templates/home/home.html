@@ -106,16 +106,6 @@
         {% for event in upcoming_events %}
 
         <div class="event-card">
-
-            {% if event.banner %}
-
-                <img
-                    src="{{ event.banner.url }}"
-                    alt="{{ event.title }}"
-                    class="event-banner">
-
-            {% endif %}
-
             <h3>{{ event.title }}</h3>
 
             <p>

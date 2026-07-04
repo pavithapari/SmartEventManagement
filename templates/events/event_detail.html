@@ -6,10 +6,6 @@
 
     <div class="event-detail-card">
 
-        {% if event.banner %}
-            <img src="{{ event.banner.url }}" class="detail-banner">
-        {% endif %}
-
         <div class="detail-content">
 <h1>{{ event.title }}</h1>
 
@@ -98,17 +94,6 @@
     </a>
 
 {% endif %}
-
-    {% if user == event.organizer %}
-    <a href="{% url 'edit_event' event.id %}" >
-        <button class="btn btn-primary">Edit Event</button>
-    </a>
-
-        <button class="btn btn-danger" onclick="openDeleteModal()">
-        Delete Event
-    </button>
-
-    {% endif %}
 
     
 </div>

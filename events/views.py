@@ -13,7 +13,7 @@ def create_event(request):
 
     if request.method == "POST":
 
-        form = EventForm(request.POST, request.FILES)
+        form = EventForm(request.POST)
 
         if form.is_valid():
 

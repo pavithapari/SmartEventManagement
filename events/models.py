@@ -42,12 +42,6 @@ class Event(models.Model):
 
     capacity = models.PositiveIntegerField()
 
-    banner = models.ImageField(
-        upload_to='event_banners/',
-        blank=True,
-        null=True
-    )
-
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,

@@ -29,65 +29,139 @@
 
 {% for event in my_events %}
 
-<div class="event-card">
+    <div class="event-card">
 
-    {% if event.banner %}
-        <img src="{{ event.banner.url }}" class="detail-banner">
-    {% endif %}
+        <h3>{{ event.title }}</h3>
 
-    <h3>{{ event.title }}</h3>
+        <p><strong>Venue:</strong> {{ event.venue }}</p>
 
-    <p>{{ event.venue }}</p>
+        <p><strong>Date:</strong> {{ event.event_date }}</p>
 
-    <p>{{ event.event_date }}</p>
+        <p><strong>Registrations:</strong> {{ event.total_registrations }}</p>
 
-    <p>
+        <div class="actions">
 
-        Registrations:
-        {{ event.total_registrations }}
+            <a href="{% url 'event_detail' event.id %}"
+               class="btn btn-primary">
+                View
+            </a>
 
-    </p>
+            <a href="{% url 'edit_event' event.id %}"
+               class="btn btn-warning">
+                Edit
+            </a>
 
-    <div class="actions">
+            <a href="{% url 'participants_list' event.id %}"
+               class="btn btn-success">
+                Participants
+            </a>
 
-        <a href="{% url 'event_detail' event.id %}"
-           class="btn btn-primary">
+            <button
+                type="button"
+                class="btn btn-danger"
+                onclick="openDeleteModal('{{ event.id }}', '{{ event.title|escapejs }}')">
 
-            View
+                Delete
 
-        </a>
+            </button>
 
-        <a href="{% url 'edit_event' event.id %}"
-           class="btn btn-warning">
+        </div>
 
-            Edit
+    </div>
 
-        </a>
+{% empty %}
 
-        <a href="{% url 'participants_list' event.id %}"
-           class="btn btn-success">
+    <p>You haven't created any events yet.</p>
 
-            Participants
+{% endfor %}
 
-        </a>
+</div>
 
-        <button
-            class="btn btn-danger">
 
-            Delete
+<!-- Delete Modal -->
 
-        </button>
+<div id="deleteModal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>Delete Event</h2>
+
+        <p>
+
+            Are you sure you want to permanently delete
+
+            <strong id="eventName"></strong>?
+
+        </p>
+
+        <p style="color:#dc3545;">
+
+            This action cannot be undone.
+
+        </p>
+
+        <div class="modal-buttons">
+
+            <form
+                method="POST"
+                id="deleteForm">
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="btn btn-danger">
+
+                    Delete
+
+                </button>
+
+            </form>
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="closeDeleteModal()">
+
+                Cancel
+
+            </button>
+
+        </div>
 
     </div>
 
 </div>
 
-{% empty %}
+<script>
 
-<p>You haven't created any events yet.</p>
+function openDeleteModal(eventId, eventTitle){
 
-{% endfor %}
+    document.getElementById("eventName").textContent = eventTitle;
 
-</div>
+    document.getElementById("deleteForm").action =
+        "{% url 'delete_event' 0 %}".replace("0", eventId);
+
+    document.getElementById("deleteModal").style.display = "flex";
+}
+
+function closeDeleteModal(){
+
+    document.getElementById("deleteModal").style.display = "none";
+}
+
+window.onclick = function(e){
+
+    const modal = document.getElementById("deleteModal");
+
+    if(e.target === modal){
+
+        closeDeleteModal();
+
+    }
+
+}
+
+</script>
 
 {% endblock %}
