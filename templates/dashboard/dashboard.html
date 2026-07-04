@@ -71,9 +71,9 @@
 
 <h3>{{ registration.event.title }}</h3>
 
-<p>📅 {{ registration.event.date }}</p>
+<p>📅 {{ registration.event.event_date }}</p>
 
-<p>📍 {{ registration.event.location }}</p>
+<p>📍 {{ registration.event.venue }}</p>
 
 <a href="{% url 'event_detail' registration.event.id %}" class="btn btn-primary">
     View Event
