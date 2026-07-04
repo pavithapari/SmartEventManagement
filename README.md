@@ -168,19 +168,6 @@ http://127.0.0.1:8000/
 
 ---
 
-## 📸 Screenshots
-
-You can add screenshots here after deployment.
-
-* Home Page
-* Event Listing
-* Event Details
-* User Dashboard
-* Organizer Dashboard
-* Registration Page
-
----
-
 ## 📌 Future Enhancements
 
 * Event Announcements
