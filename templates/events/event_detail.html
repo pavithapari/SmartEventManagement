@@ -1,11 +1,29 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 
 <div class="page-container">
 
     <div class="event-detail-card">
+        {% if event.category == "TECH" %}
+    <img src="{% static 'images/banners/tech.png' %}" class="event-banner">
 
+{% elif event.category == "CULT" %}
+    <img src="{% static 'images/banners/cult.jpg' %}" class="event-banner">
+
+{% elif event.category == "SPORT" %}
+    <img src="{% static 'images/banners/sports.webp' %}" class="event-banner">
+
+{% elif event.category == "WORKSHOP" %}
+    <img src="{% static 'images/banners/Workshop.jpg' %}" class="event-banner">
+
+{% elif event.category == "SEMINAR" %}
+    <img src="{% static 'images/banners/seminar.jpg' %}" class="event-banner">
+
+{% else %}
+    <img src="{% static 'images/banners/others.jpg' %}" class="event-banner">
+
+{% endif %}
         <div class="detail-content">
 <h1>{{ event.title }}</h1>
 

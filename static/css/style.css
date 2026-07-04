@@ -731,6 +731,17 @@ footer{
     margin-bottom:6px;
 }
 
+
+
+
+.event-banner{
+    width:100%;
+    height:360px;
+    display:block;
+    object-fit:cover;
+    object-position:top;
+}
+
 /* =========================
    Actions
 ========================= */
