@@ -6,7 +6,7 @@ class EventForm(forms.ModelForm):
 
     class Meta:
         model = Event
-        exclude = ["organizers", "created_at"]
+        exclude = ["organizer", "created_at"]
 
         widgets = {
             "event_date": forms.DateInput(

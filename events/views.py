@@ -135,3 +135,32 @@ def edit_event(request, id):
             "event": event,
         }
     )
+
+
+@login_required
+def delete_event(request, id):
+
+    event = get_object_or_404(Event, id=id)
+
+    # Only the organizer can delete
+    if event.organizer != request.user:
+
+        messages.error(
+            request,
+            "You are not authorized to delete this event."
+        )
+
+        return redirect("event_detail", id=id)
+
+    if request.method == "POST":
+
+        event.delete()
+
+        messages.success(
+            request,
+            "Event deleted successfully."
+        )
+
+        return redirect("event_list")
+
+    return redirect("event_detail", id=id)
