@@ -164,3 +164,34 @@ def delete_event(request, id):
         return redirect("event_list")
 
     return redirect("event_detail", id=id)
+
+
+
+@login_required
+def participants_list(request, id):
+
+    event = get_object_or_404(Event, id=id)
+
+    if event.organizer != request.user:
+
+        messages.error(
+            request,
+            "You are not authorized to view participants."
+        )
+
+        return redirect("event_detail", id=id)
+
+    participants = Registration.objects.filter(
+        event=event
+    ).select_related("user")
+
+    context = {
+        "event": event,
+        "participants": participants,
+    }
+
+    return render(
+        request,
+        "events/participants_list.html",
+        context
+    )

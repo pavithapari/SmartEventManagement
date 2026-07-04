@@ -10,6 +10,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from registrations.models import Registration
+
+from django.db.models import Count
 def register(request):
 
     if request.method == "POST":
@@ -151,3 +153,34 @@ def home(request):
 @login_required
 def profile(request):
     return render(request, "accounts/profile.html")
+
+
+
+
+
+
+
+@login_required
+def organizer_dashboard(request):
+
+    my_events = (
+        Event.objects.filter(organizer=request.user)
+        .annotate(total_registrations=Count("registrations"))
+        .order_by("event_date")
+    )
+
+    context = {
+        "my_events": my_events,
+        "total_events": my_events.count(),
+        "upcoming_events": my_events.filter(status="OPEN").count(),
+        "total_registrations": sum(
+            event.total_registrations
+            for event in my_events
+        ),
+    }
+
+    return render(
+        request,
+        "dashboard/organizer_dashboard.html",
+        context,
+    )

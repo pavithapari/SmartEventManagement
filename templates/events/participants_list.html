@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="table-container">
+
+    <h2>{{ event.title }}</h2>
+
+    <p>
+
+        Total Participants :
+        {{ participants.count }}
+
+    </p>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Name</th>
+                <th>Email</th>
+                <th>Registered On</th>
+                <th>Status</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for registration in participants %}
+
+            <tr>
+
+                <td>
+
+                    {{ registration.user.get_full_name|default:registration.user.username }}
+
+                </td>
+
+                <td>
+
+                    {{ registration.user.email }}
+
+                </td>
+
+                <td>
+
+                    {{ registration.registered_at|date:"d M Y" }}
+
+                </td>
+
+                <td>
+
+                    {{ registration.status }}
+
+                </td>
+
+            </tr>
+
+        {% empty %}
+
+            <tr>
+
+                <td colspan="4">
+
+                    No participants yet.
+
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

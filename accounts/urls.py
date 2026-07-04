@@ -12,4 +12,9 @@ urlpatterns = [
     path("accounts/dashboard/", views.dashboard, name="dashboard"),
     path("", views.home, name="home"),
     path("accounts/profile/", views.profile, name="profile"),
+    path(
+    "accounts/organizer-dashboard/",
+    views.organizer_dashboard,
+    name="organizer_dashboard",
+),
 ]

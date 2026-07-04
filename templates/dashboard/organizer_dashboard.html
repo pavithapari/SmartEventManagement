@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="page-title">Organizer Dashboard</h1>
+
+<div class="stats">
+
+    <div class="stat-card">
+        <h2>{{ total_events }}</h2>
+        <p>Total Events</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>{{ total_registrations }}</h2>
+        <p>Total Registrations</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>{{ upcoming_events }}</h2>
+        <p>Upcoming Events</p>
+    </div>
+
+</div>
+
+<h2>My Events</h2>
+
+<div class="event-grid">
+
+{% for event in my_events %}
+
+<div class="event-card">
+
+    {% if event.banner %}
+        <img src="{{ event.banner.url }}" class="detail-banner">
+    {% endif %}
+
+    <h3>{{ event.title }}</h3>
+
+    <p>{{ event.venue }}</p>
+
+    <p>{{ event.event_date }}</p>
+
+    <p>
+
+        Registrations:
+        {{ event.total_registrations }}
+
+    </p>
+
+    <div class="actions">
+
+        <a href="{% url 'event_detail' event.id %}"
+           class="btn btn-primary">
+
+            View
+
+        </a>
+
+        <a href="{% url 'edit_event' event.id %}"
+           class="btn btn-warning">
+
+            Edit
+
+        </a>
+
+        <a href="{% url 'participants_list' event.id %}"
+           class="btn btn-success">
+
+            Participants
+
+        </a>
+
+        <button
+            class="btn btn-danger">
+
+            Delete
+
+        </button>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<p>You haven't created any events yet.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
