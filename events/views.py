@@ -7,6 +7,7 @@ from .models import Event
 from registrations.models import Registration
 from .models import Event
 from django.db.models import Q 
+from django.utils import timezone
 
 @login_required
 def create_event(request):
@@ -47,8 +48,13 @@ def event_list(request):
         )
     if category:
         events=events.filter(category=category)
+    today = timezone.localdate()
+    upevents = events.filter(event_date__gte=today).order_by("event_date")
+    pastevents = events.filter(event_date__lt=today).order_by("-event_date")
     context = {
         "events": events,
+        "upevents": upevents,
+        "pastevents": pastevents,
         "search":search,
             "category":category,
         "categories":Event.CATEGORY_CHOICES,    }
