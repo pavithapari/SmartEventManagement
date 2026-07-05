@@ -1,6 +1,10 @@
+
+
 # 🎉 Smart Event Management Portal
 
 A full-stack web application built with **Django** that streamlines event organization and participation. Users can register, browse events, enroll in upcoming activities, while organizers can create and manage events, monitor registrations, and view participants through a dedicated dashboard.
+
+Live Link: https://pav120.pythonanywhere.com/
 
 ---
 
@@ -161,19 +165,6 @@ Open:
 ```
 http://127.0.0.1:8000/
 ```
-
----
-
-## 📸 Screenshots
-
-You can add screenshots here after deployment.
-
-* Home Page
-* Event Listing
-* Event Details
-* User Dashboard
-* Organizer Dashboard
-* Registration Page
 
 ---
 
